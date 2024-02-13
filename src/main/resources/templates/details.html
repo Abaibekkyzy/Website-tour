@@ -1,0 +1,82 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate = "~{layout/main.html}">
+
+<div layout:fragment="site_content" >
+    <div class="row mt-5">
+        <div class="col-6 offset-3"   >
+            <div class="jumbotron">
+                <h1 class="display-4" th:text="${item!=null?item.name:''}"></h1>
+                <p class="lead"th:text="#{label.price} + ' : ' + ${item!=null?item.price:'0'}"></p>
+                <hr class="my-4">
+                <p th:text="#{label.days} + ' : ' + ${item!=null?item.amount:'0'}"></p>
+                <p th:text="#{label.country} + ': ' + ${item!=null?item.country.name:''}">: </p>
+                <div class="form-group" style="margin-top: 15px">
+                    <a th:href="@{'/edititem/'+${item.id}}"  class="btn btn-outline-dark btn-rounded" data-mdb-ripple-color="dark" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')">EDIT</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div th:if="${hasTour==null}">
+
+    <div class="row mt-5">
+        <div class="col-6 offset-3">
+            <h1 class="display-1 text-center">Go to with ARU! </h1>
+            <form th:action="@{'/addRequest'}" method="post">
+
+                <input type="hidden" class="form-control" name="id_client" th:value="${currentUser.id}">
+                <div class="form-group" style="margin-top: 10px">
+                    <label > Date:
+                    </label>
+                    <input type="text" class="form-control" name="date">
+                </div>
+                <div class="form-group" style="margin-top: 10px">
+                    <label >Phone number:
+                    </label>
+                    <input type="text" class="form-control" name="ph_number">
+                </div>
+                <div class="form-group" style="margin-top: 10px">
+                    <label> Tour: <a th:value="${item.name}"></a>
+                    </label>
+                    <input type="hidden" class="form-control" name="item_id" th:value="${item.id}" th:text="${item.name}+ '/' +${item.country.code}">
+                </div>
+                <div class="form-group" style="margin-top: 15px">
+                    <button class="btn btn-success pt-10" style="background-color: darkcyan" th:text="#{button.add}"></button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    <div th:if="${hasTour!=null}">
+        <h4>You already have this tour</h4>
+    </div>
+<!--    &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col">
+                        <img src="https://i.pinimg.com/564x/b3/56/96/b35696ca77908ab5cb1fdd14be6633fd.jpg" class="rounded float-start" alt="..."  style="height: 450px">
+
+                    </div>
+                    <div class="col">
+                        What is Lorem Ipsum?
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        Why do we use it?
+                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+                    </div>
+                    <div class="col">
+                        <img src="https://i.pinimg.com/564x/63/0e/d7/630ed7eff3901d171a1a953db046b476.jpg" class="rounded float-end" alt="..." style="height: 450px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</html>

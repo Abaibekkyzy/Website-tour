@@ -1,0 +1,140 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.w3.org/1999/xhtml" layout:decorate="~{layout/main.html}">
+
+<div layout:fragment="site_content">
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="container">
+
+                    <!--Grid row-->
+                    <div class="row">
+                        <!--Grid column-->
+                        <div class="col-lg-4 col-md-12 mb-4">
+                            <img
+                                    src="https://i.pinimg.com/564x/df/59/f0/df59f0add40367d3006148639e6ffc6f.jpg"
+                                    class="img-fluid rounded-4 shadow-2-strong"
+                                    alt="Hollywood Sign on The Hill"
+                            />
+                        </div>
+                        <!--Grid column-->
+
+                        <!--Grid column-->
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <img
+                                    src="https://i.pinimg.com/564x/0b/56/d8/0b56d83436fe3d2c5d165db0af62b06f.jpg"
+                                    class="img-fluid rounded-4 shadow-2-strong"
+                                    alt="Five Lands National Park"
+                            />
+                        </div>
+
+                        <!--Grid column-->
+
+                        <!--Grid column-->
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <img
+                                    src="https://mdbcdn.b-cdn.net/img/new/standard/city/043.webp"
+                                    class="img-fluid rounded-4 shadow-2-strong"
+                                    alt="Los Angeles Skyscrapers"
+                            />
+                        </div>
+                        <!--Grid column-->
+                    </div>
+                    <!--Grid row-->
+
+                    <!--Grid row-->
+                    <div class="row">
+                        <!--Grid column-->
+                        <div class="col-lg-4 col-md-12 mb-4">
+                            <img
+                                    src="https://i.pinimg.com/564x/8b/fe/60/8bfe60a5718fb8ab1b2bb53348358fa9.jpg"
+                                    class="img-fluid rounded-4 shadow-2-strong"
+                                    alt="Skyscrapers"
+                            />
+                        </div>
+                        <!--Grid column-->
+
+                        <!--Grid column-->
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <img
+                                    src="https://i.pinimg.com/564x/e3/f6/ff/e3f6ff20b73498769fd2c627945ce621.jpg"
+                                    class="img-fluid rounded-4 shadow-2-strong"
+                                    alt="New York City"
+                            />
+                        </div>
+                        <!--Grid column-->
+
+                        <!--Grid column-->
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <img
+                                    src="https://mdbcdn.b-cdn.net/img/new/standard/city/046.webp"
+                                    class="img-fluid rounded-4 shadow-2-strong"
+                                    alt="American Home"
+                            />
+                        </div>
+                        <!--Grid column-->
+                    </div>
+                    <!--Grid row-->
+
+                </div>
+            </div>
+        </div>
+
+    <!--    ____________________________________________-->
+        <div class="row mt-5">
+            <div class="col-12">
+                <h1>Available tours:</h1>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th th:text="#{label.name}"></th>
+                            <th th:text="#{label.price}"></th>
+                            <th th:text="#{label.days}"></th>
+                            <th th:text="#{label.country}"></th>
+                            <th width="10%" sec:authorize="isAuthenticated()" th:if="${currentUser!=null}" th:text="#{label.details}"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="it:${tovary}">
+                            <td th:text="${it.id}"></td>
+                            <td th:text="${it.name}"></td>
+                            <td th:text="${it.price}"></td>
+                            <td th:text="${it.amount}"></td>
+                            <td th:text="${it.country!=null?it.country.name : '---'}"></td>
+                            <td sec:authorize="isAuthenticated()" th:if="${currentUser!=null}" ><a th:href="@{ '/details/' + ${it.id} }"
+                                   class="btn btn-outline-dark btn-rounded" data-mdb-ripple-color="dark" th:text="#{label.details}"></a> </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+<!--    ____________________________________________-->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col">
+                        <img src="https://i.pinimg.com/564x/b3/56/96/b35696ca77908ab5cb1fdd14be6633fd.jpg" class="rounded float-start" alt="..."  style="height: 450px">
+
+                    </div>
+                    <div class="col">
+                        What is Lorem Ipsum?
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+                    </div>
+                    <div class="col">
+                        <img src="https://i.pinimg.com/564x/63/0e/d7/630ed7eff3901d171a1a953db046b476.jpg" class="rounded float-end" alt="..." style="height: 450px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    </div>
+</html>

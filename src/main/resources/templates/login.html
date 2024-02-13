@@ -1,0 +1,60 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  layout:decorate = "~{layout/main.html}">
+
+<div layout:fragment="site_content" >
+    <div class="row mt-5">
+        <div class="col-6 offset-3">
+            <form th:action="@{'/auth'}" method="post">
+                <div class="form-group" style="margin-top: 10px">
+                    <label th:text="#{label.email}"> </label>
+                    <input type="email" name="user_email" class="form-control" required>
+                </div>
+
+                <div class="form-group" style="margin-top: 10px">
+                    <label th:text="#{label.password}"> </label>
+                    <input type="password" name="user_password" class="form-control" required>
+                </div>
+                <div class="form-group" style="margin-top: 15px">
+                    <button class="btn btn-primary btn-block mb-4" th:text="#{label.login}"></button>
+                </div>
+                <div class="text-center" >
+                    <p>Not a member? <a th:href="@{'/register'}">Register</a></p>
+                </div>
+            </form>
+
+
+<!--            <form th:action="@{'/auth'}" method="post">-->
+<!--                &lt;!&ndash; Email input &ndash;&gt;-->
+<!--                <div class="form-outline mb-4">-->
+<!--                    <input type="email" id="form2Example1" class="form-control" name="user_email"/>-->
+<!--                    <label class="form-label" for="form2Example1" th:text="#{label.email}"></label>-->
+<!--                </div>-->
+
+<!--                &lt;!&ndash; Password input &ndash;&gt;-->
+<!--                <div class="form-outline mb-4">-->
+<!--                    <input type="password" id="form2Example2" class="form-control" name="user_password"/>-->
+<!--                    <label class="form-label" for="form2Example2" th:text="#{label.password}"></label>-->
+<!--                </div>-->
+
+<!--                &lt;!&ndash; 2 column grid layout for inline styling &ndash;&gt;-->
+<!--                <div class="row mb-4">-->
+<!--                    <div class="col d-flex justify-content-center">-->
+<!--                        &lt;!&ndash; Checkbox &ndash;&gt;-->
+<!--                        <div class="form-check">-->
+<!--                            <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />-->
+<!--                            <label class="form-check-label" for="form2Example31"> Remember me </label>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                &lt;!&ndash; Submit button &ndash;&gt;-->
+<!--                <button type="button" class="btn btn-primary" th:text="#{label.login}"></button>-->
+
+<!--                &lt;!&ndash; Register buttons &ndash;&gt;-->
+<!--                <div class="text-center">-->
+<!--                    <p>Not a member? <a th:href="@{'/register'}">Register</a></p>-->
+<!--                </div>-->
+<!--            </form>-->
+        </div>
+    </div>
+</div>
+</html>

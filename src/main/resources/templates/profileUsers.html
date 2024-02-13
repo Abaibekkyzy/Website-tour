@@ -1,0 +1,116 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.w3.org/1999/xhtml" layout:decorate="~{layout/main.html}">
+
+<div layout:fragment="site_content" >
+
+    <div class="row mt-5">
+        <div class="col-6 offset-3"   >
+            <div class="jumbotron">
+                <h1 class="display-4" th:text="${user!=null?user.fullName:''}"></h1>
+                <p class="lead"th:text="#{label.email} + ' : ' + ${user!=null?user.email:'0'}"></p>
+                <hr class="my-4">
+                <p th:text="#{label.password} + ' : ' + ${user!=null?user.password:'0'}"></p>
+                <p th:text="#{label.roles} + ': '">: <h5 th:each="cnt:${user.roles}" th:text="${cnt.getRole()} + ', '"></h5></p>
+
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <div class="card">
+        <div class="card-header">Quote</div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+            </blockquote>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col">
+                        <img src="https://i.pinimg.com/564x/b3/56/96/b35696ca77908ab5cb1fdd14be6633fd.jpg" class="rounded float-start" alt="..."  style="height: 450px">
+
+                    </div>
+                    <div class="col">
+                        What is Lorem Ipsum?
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+                    </div>
+                    <div class="col">
+                        <img src="https://i.pinimg.com/564x/63/0e/d7/630ed7eff3901d171a1a953db046b476.jpg" class="rounded float-end" alt="..." style="height: 450px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="row mt-5">
+        <div class="col-6 offset-3">
+            <h3>If you want to edit your information:</h3>
+            <h4 >Be sure</h4>
+            <br>
+            <form th:action="@{'/saveUserManaging'}" method="post">
+                <input type="hidden" name="id" th:value="${user.id}">
+                <div class="form-group">
+                    <label th:text="#{label.name}"></label>
+                    <input type="text" class="form-control" name="user_name" th:value="${user!=null?user.fullName:''}">
+                </div>
+                <div class="form-group">
+                    <label th:text="#{label.email}"></label>
+                    <input type="text" class="form-control" name="user_email" th:value="${user!=null?user.email:''}" >
+                </div>
+                <div class="form-group">
+                    <label th:text="#{label.password}"></label>
+                    <input type="text" class="form-control" name="user_password" th:value="${user!=null?user.password:'0'}">
+                </div>
+<!--                <div class="form-group">-->
+<!--                    <label th:text="#{label.roles}"></label>-->
+<!--                    <input type="text" class="form-control" name="user_role" th:value="${user!=null?user.roles:''}">-->
+<!--                </div>-->
+
+                <div class="form-group" style="margin-top: 15px">
+                    <button  class="btn btn-success pt-10" style="background-color: darkcyan" th:text="#{button.save}"></button>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger ml-2" data-bs-toggle="modal" data-bs-target="#exampleModal" th:text="#{button.delete}">
+                        Launch static backdrop modal
+                    </button>
+                </div>
+            </form>
+
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <form th:action="${'/deleteProfileUser'}" method="post">
+                        <input type="hidden" name="id" th:value="${user.id}">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title fs-5" id="staticBackdropLabel"></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h5 th:text="#{message.confirm}"></h5>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" th:text="#{button.cancel}"></button>
+                                <button class="btn btn-danger" th:text="#{button.delete}"></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

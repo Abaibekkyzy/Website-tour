@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate = "~{layout/main.html}">
+
+<div layout:fragment="site_content" >
+    <div class="row mt-5">
+        <div class="col-12">
+            <h1>Users</h1>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th th:text="#{label.name}"></th>
+                    <th th:text="#{label.password}"></th>
+                    <th th:text="#{label.email}"></th>
+                    <th th:text="#{label.roles}"></th>
+                    <th width="10%" th:text="#{label.details}"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="it:${users}">
+                    <td th:text="${it.id}"></td>
+                    <td th:text="${it.fullName}"></td>
+                    <td th:text="${it.password}"></td>
+                    <td th:text="${it.email}"></td>
+                    <td><a th:each="cnt:${it.roles}" th:text="${cnt.getRole()} + ', '"></a></td>
+                    <td><a th:href="@{ '/profileUsers/' + ${it.id} }"
+                           class="btn btn-outline-dark btn-rounded" data-mdb-ripple-color="dark" th:text="#{label.details}"></a> </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+</div>
+</html>
